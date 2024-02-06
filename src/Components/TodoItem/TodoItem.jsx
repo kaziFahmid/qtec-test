@@ -7,7 +7,7 @@ export const TodoItem = ({handleInputChange, todo,index, editingIndex, inputValu
     <div
     key={index}
     style={{ position: 'relative' }}
-    className="border px-2 d-flex justify-content-between items-center py-2 mb-2"
+    className="border px-2 d-flex flex-column flex-sm-row justify-content-between items-center py-2 mb-2"
   >
     {editingIndex === index ? (
       <>
@@ -15,9 +15,9 @@ export const TodoItem = ({handleInputChange, todo,index, editingIndex, inputValu
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          className="form-control w-25"
+          className="form-control w-100 "
         />
-        <div className="d-flex justify-content-end items-center gap-2">
+        <div className="d-flex justify-content-end items-center gap-2 mt-2 mt-sm-0">
           <button
             className="btn btn-success d-flex justify-content-center items-center"
             onClick={handleSaveEdit}
