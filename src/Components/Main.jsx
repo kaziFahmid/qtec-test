@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-
 import { TodoItem } from "./TodoItem/TodoItem";
-
+import { FaPlus } from "react-icons/fa";
 export const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
   const [filter, setFilter] = useState("all");
+
+  //   ----------All Todos Counts variables----------
   const AllTodoListCount = todoList?.length;
   const AllTodoLowListsCount = todoList.filter(
     (todo) => todo?.status === "low"
@@ -93,7 +94,13 @@ export const Main = () => {
   };
 
   return (
-      <div className="container mt-4">
+    <div
+      className="container mt-4  p-5 rounded"
+      style={{ background: "#F3F5F7" }}
+    >
+      <h4 className="text-center mb-3">
+        <i>Todo List</i>
+      </h4>
       <div className="text-center d-flex ">
         <input
           type="text"
@@ -105,12 +112,14 @@ export const Main = () => {
         />
         <button
           type="button"
-          className="btn btn-success"
+          className="btn btn-success p-3 px-5"
           onClick={handleAddTodo}
         >
-          Add Task
+          <FaPlus style={{ fontSize: "24px" }} />
         </button>
       </div>
+
+      {/*  //   ----------Filter Todo Based on priority buttons---------- */}
 
       <div className="d-flex flex-column text-center flex-sm-row justify-content-center gap-2 mt-3">
         <div>
@@ -180,6 +189,7 @@ export const Main = () => {
         </div>
       </div>
 
+{/* ----------All Todos---------- */}
       <div className="mt-3">
         {filteredTodoList.map((todo, index) => (
           <TodoItem
