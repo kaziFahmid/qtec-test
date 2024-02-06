@@ -12,7 +12,7 @@ Currently, two official plugins are available:
 
 ## Overview
 
-This is a simple Todo List application built with React. The app allows users to add, edit, delete, and filter tasks based on their priority. It also supports drag-and-drop functionality for reordering tasks.
+This is a simple Todo List application built with React. The app allows users to add, edit, delete, and filter tasks based on their priority.
 
 ## Features
 
