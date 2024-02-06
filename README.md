@@ -20,13 +20,13 @@ This is a simple Todo List application built with React. The app allows users to
 - Edit and save changes to existing tasks.
 - Delete tasks.
 - Filter tasks based on their status (pending, complete) and priority.
-- Drag-and-drop functionality to reorder tasks.
+
 
 ## Technologies Used
 
 - React
 - Bootstrap
-- React DnD (for drag-and-drop)
 
-## Project Structure
+
+
 
