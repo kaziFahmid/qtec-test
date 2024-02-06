@@ -7,12 +7,19 @@ export const Main = () => {
   const [inputValue, setInputValue] = useState('');
   const [todoList, setTodoList] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
+  const [filter, setFilter] = useState('all');
 
   const AllTodoListCount = todoList?.length;
   const AllTodoLowListsCount = todoList.filter((todo) => todo?.status === 'low').length;
   const AllTodoMediumListsCount = todoList.filter((todo) => todo?.status === 'medium').length;
   const AllTodoHighListsCount = todoList.filter((todo) => todo?.status === 'high').length;
   const AllTodoCompleteListsCount = todoList.filter((todo) => todo?.status === 'complete').length;
+
+  const filteredTodoList = todoList.filter((todo) => {
+    if (filter === 'all') return true;
+    return todo.status === filter;
+  });
+
   useEffect(() => {
     const storedTodoList = JSON.parse(localStorage.getItem('todoList')) || [];
     setTodoList(storedTodoList);
@@ -68,6 +75,10 @@ export const Main = () => {
     setInputValue('');
   };
 
+  const handleFilter = (status) => {
+    setFilter(status);
+  };
+
   return (
     <div className="container">
       <div className="text-center d-flex mt-4">
@@ -83,35 +94,50 @@ export const Main = () => {
       </div>
       <div className="d-flex flex-column text-center flex-sm-row justify-content-center gap-2 mt-3">
         <div>
-          <button className="btn btn-secondary px-4">
+          <button
+            className={`btn ${filter === 'all' ? 'btn-secondary' : 'border border-secondary'} px-4`}
+            onClick={() => handleFilter('all')}
+          >
             All {' '}
             ({AllTodoListCount})
           </button>
         </div>
         <div>
           {' '}
-          <button className="btn btn-success px-4">
-            Complete{' '}
+          <button
+            className={`btn ${filter === 'complete' ? 'btn-success' : 'border border-success'} px-4`}
+            onClick={() => handleFilter('complete')}
+          >
+            Complete {' '}
             ({AllTodoCompleteListsCount})
           </button>
         </div>
         <div>
           {' '}
-          <button className="btn btn-danger px-4">
+          <button
+            className={`btn ${filter === 'low' ? 'btn-danger' : 'border border-danger'} px-4`}
+            onClick={() => handleFilter('low')}
+          >
             Low {' '}
             ({AllTodoLowListsCount})
           </button>
         </div>
         <div>
           {' '}
-          <button className="btn btn-info px-4 ">
+          <button
+            className={`btn ${filter === 'medium' ? 'btn-info' : 'border border-info'} px-4`}
+            onClick={() => handleFilter('medium')}
+          >
             Medium {' '}
             ({AllTodoMediumListsCount}){' '}
           </button>
         </div>
         <div>
           {' '}
-          <button className="btn btn-warning px-4">
+          <button
+            className={`btn ${filter === 'high' ? 'btn-warning' : 'border border-warning'} px-4`}
+            onClick={() => handleFilter('high')}
+          >
             High {' '}
             ({AllTodoHighListsCount}){' '}
           </button>
@@ -120,7 +146,7 @@ export const Main = () => {
 
       {/* todo list area Start */}
       <div className="mt-3">
-        {todoList.map((todo, index) => (
+        {filteredTodoList.map((todo, index) => (
           <div
             key={index}
             style={{ position: 'relative' }}
@@ -197,7 +223,7 @@ export const Main = () => {
                         <SlOptionsVertical />
                       </button>
                       <ul class="dropdown-menu">
-                      <li>
+                        <li>
                           <button
                             className="dropdown-item"
                             onClick={() => handleUpdateStatus(index, 'pending')}
@@ -250,3 +276,5 @@ export const Main = () => {
     </div>
   );
 };
+
+export default Main;
