@@ -93,28 +93,30 @@ export const Main = () => {
   };
 
   return (
-    <div className="container">
-      <div className="text-center d-flex mt-4">
+      <div className="container mt-4">
+      <div className="text-center d-flex ">
         <input
           type="text"
           value={inputValue}
           onKeyPress={(e) => e.key === "Enter" && handleAddTodo()}
           onChange={handleInputChange}
-          className="w-100 form-control"
+          className="form-control me-2"
+          placeholder="Enter your task..."
         />
         <button
           type="button"
           className="btn btn-success"
           onClick={handleAddTodo}
         >
-          +
+          Add Task
         </button>
       </div>
+
       <div className="d-flex flex-column text-center flex-sm-row justify-content-center gap-2 mt-3">
         <div>
           <button
             className={`btn ${
-              filter === "all" ? "btn-secondary" : "border border-secondary"
+              filter === "all" ? "btn-secondary" : "btn-outline-secondary"
             } px-4`}
             onClick={() => handleFilter("all")}
           >
@@ -125,7 +127,7 @@ export const Main = () => {
         <div>
           <button
             className={`btn ${
-              filter === "pending" ? "btn-secondary" : "border border-secondary"
+              filter === "pending" ? "btn-secondary" : "btn-outline-secondary"
             } px-4`}
             onClick={() => handleFilter("pending")}
           >
@@ -134,52 +136,50 @@ export const Main = () => {
         </div>
 
         <div>
-          {" "}
           <button
             className={`btn ${
-              filter === "complete" ? "btn-success" : "border border-success"
+              filter === "complete" ? "btn-success" : "btn-outline-success"
             } px-4`}
             onClick={() => handleFilter("complete")}
           >
             Complete ({AllTodoCompleteListsCount})
           </button>
         </div>
+
         <div>
-          {" "}
           <button
             className={`btn ${
-              filter === "low" ? "btn-danger" : "border border-danger"
+              filter === "low" ? "btn-danger" : "btn-outline-danger"
             } px-4`}
             onClick={() => handleFilter("low")}
           >
             Low ({AllTodoLowListsCount})
           </button>
         </div>
+
         <div>
-          {" "}
           <button
             className={`btn ${
-              filter === "medium" ? "btn-info" : "border border-info"
+              filter === "medium" ? "btn-info" : "btn-outline-info"
             } px-4`}
             onClick={() => handleFilter("medium")}
           >
-            Medium ({AllTodoMediumListsCount}){" "}
+            Medium ({AllTodoMediumListsCount})
           </button>
         </div>
+
         <div>
-          {" "}
           <button
             className={`btn ${
-              filter === "high" ? "btn-warning" : "border border-warning"
+              filter === "high" ? "btn-warning" : "btn-outline-warning"
             } px-4`}
             onClick={() => handleFilter("high")}
           >
-            High ({AllTodoHighListsCount}){" "}
+            High ({AllTodoHighListsCount})
           </button>
         </div>
       </div>
 
-      {/* todo list area Start */}
       <div className="mt-3">
         {filteredTodoList.map((todo, index) => (
           <TodoItem
@@ -197,7 +197,6 @@ export const Main = () => {
           />
         ))}
       </div>
-      {/* todo list area End */}
     </div>
   );
 };

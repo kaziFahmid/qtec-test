@@ -7,7 +7,7 @@ export const TodoItem = ({handleInputChange, todo,index, editingIndex, inputValu
     <div
     key={index}
     style={{ position: 'relative' }}
-    className="border px-2 d-flex flex-column flex-sm-row justify-content-between items-center py-2 mb-2"
+    className="border px-2 d-flex flex-column flex-sm-row justify-content-between items-center py-2 mb-3"
   >
     {editingIndex === index ? (
       <>
